@@ -1,7 +1,7 @@
 import { useCharacterContext } from "./CharacterContext";
 
 const Filters = () => {
-  const { setStatusFilter, setSpeciesFilter, setGenderFilter } = useCharacterContext();
+  const { setStatusFilter, setSpeciesFilter, setGenderFilter,setSortOrder } = useCharacterContext();
 
   return (
     <div className="flex flex-col md:flex-row justify-between mb-6 space-y-4 md:space-y-0 md:space-x-4">
@@ -37,6 +37,22 @@ const Filters = () => {
         <option value="genderless">Genderless</option>
         <option value="unknown">Unknown</option>
       </select>
+
+      {/* Filtro por ordenamiento */}
+      <div className="flex space-x-4">
+        <button
+          onClick={() => setSortOrder("asc")}
+          className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+        >
+          Sort Ascending
+        </button>
+        <button
+          onClick={() => setSortOrder("desc")}
+          className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+        >
+          Sort Descending
+        </button>
+      </div>
 
       
 

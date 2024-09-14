@@ -14,6 +14,7 @@ const CharacterFilterInputType = new GraphQLInputObjectType({
   }
 });
 
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {

@@ -1,16 +1,21 @@
 const express = require('express');// Es un framework para node que facilita la creacion de servidores
 const { graphqlHTTP } = require('express-graphql');//Es un middleware de express-graphql que permite integrar GraphQL con Express.
 const schema = require('./graphql/schema'); //  Es el esquema de GraphQL que define cómo deben ser las consultas y datos.
-const redisClient = require('./redis'); // Configuración de Redis
 const sequelize = require('./models'); // Es un ORM (Object-Relational Mapping) que te ayuda a interactuar con bases de datos SQL.
 const cors = require('cors');
 
 const app = express();// Crea una instancia de Express que se usará para definir rutas y middleware.
 
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
+  console.log(`Request Method: ${req.method}`);
+  console.log(`Request URL: ${req.originalUrl}`);
+  console.log(`Request Headers: ${JSON.stringify(req.headers)}`);
+  console.log(`Request Body: ${JSON.stringify(req.body)}`);
+  console.log('---'); // Separador para legibilidad
+
   next();
 });
 //Un middleware que se ejecuta con cada solicitud. Solo imprime en consola el método HTTP (GET, POST, etc.) y la URL de la solicitud. Luego pasa al siguiente middleware con next().

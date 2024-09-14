@@ -1,92 +1,95 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 
-// Crear el contexto
 const CharacterContext = createContext();
 
-const query = `
-  query {
-    characters {
-      id
-      name
-      species
-      gender
-      origin
-      image
+const buildQuery = (filters) => {
+  // Construir los argumentos de filtro en formato de objeto
+  const filterArgs = Object.entries(filters)
+    .filter(([_, value]) => value) // Filtrar los filtros con valores
+    .map(([key, value]) => `${key}: "${value}"`) // Convertir los pares clave-valor a formato "key: value"
+    .join(", "); // Unir los filtros con comas
+
+  // Construir la consulta GraphQL
+  const query = `
+    query {
+      characters(filter: { ${filterArgs} }) {
+        id
+        name
+        species
+        status
+        gender
+        origin
+        image
+      }
     }
-  }
-`;
+  `;
 
-// Función para obtener personajes desde la API
-const fetchCharacters = async (filter) => {
-  const response = await fetch('http://localhost:3000/graphql', {
-    method: 'POST', // Cambiado a POST
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query,
-      variables: { filter }
-    }),
-  });
-
-  console.log(response);
-
-  const result = await response.json();
-  if (result.errors) {
-    throw new Error(result.errors[0].message);
-  }
-  return result.data.characters;
+  return query;
 };
 
-// Componente del proveedor de contexto
+
 export const CharacterProvider = ({ children }) => {
   const [characters, setCharacters] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [speciesFilter, setSpeciesFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
-  const [sortOrder, setSortOrder] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    // Construir el objeto de filtro basado en los estados
-    const filter = {
-      name: searchTerm,
-      status: statusFilter,
-      species: speciesFilter,
-      gender: genderFilter,
-    };
-
-    fetchCharacters(filter)
-      .then(data => {
-        setCharacters(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error.message);
-        setLoading(false);
-      });
-  }, [searchTerm, statusFilter, speciesFilter, genderFilter]); // Dependencias del useEffect
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [loading, setLoading] = useState(false); // Estado de carga
+  const [error, setError] = useState(null); // Estado de error
 
   const handleSoftDelete = (id) => {
-    setCharacters(prevCharacters =>
-      prevCharacters.map(character =>
+    setCharacters((prevCharacters) =>
+      prevCharacters.map((character) =>
         character.id === id ? { ...character, isDeleted: true } : character
       )
     );
   };
 
-  // Console logs para debugging
-  console.log("Status Filter:", statusFilter);
-  console.log("Species Filter:", speciesFilter);
-  console.log("Gender Filter:", genderFilter);
+  const fetchCharacters = useCallback(async (filters) => {
+    setLoading(true);
+    setError(null);
+
+    const query = buildQuery(filters);
+
+    try {
+      const response = await fetch("http://localhost:3000/graphql", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
+      });
+
+      const result = await response.json();
+
+      if (result.errors) {
+        throw new Error(result.errors[0].message);
+      }
+
+      setCharacters(result.data.characters);
+    } catch (error) {
+      setError(error.message);
+      //console.error("Error fetching characters:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const filters = {
+      name: searchTerm,
+      status: statusFilter,
+      species: speciesFilter,
+      gender: genderFilter,
+    };
+    fetchCharacters(filters);
+  }, [searchTerm, statusFilter, speciesFilter, genderFilter, sortOrder, fetchCharacters]);
 
   return (
     <CharacterContext.Provider
       value={{
         characters,
-        handleSoftDelete,
         searchTerm,
         setSearchTerm,
         statusFilter,
@@ -97,8 +100,11 @@ export const CharacterProvider = ({ children }) => {
         setGenderFilter,
         sortOrder,
         setSortOrder,
-        loading,
-        error,
+        fetchCharacters,
+        setCharacters,
+        loading, // Proporcionar estado de carga
+        error, // Proporcionar estado de error
+        handleSoftDelete
       }}
     >
       {children}
@@ -106,5 +112,4 @@ export const CharacterProvider = ({ children }) => {
   );
 };
 
-// Hook para usar el contexto
-export const useCharacterContext = () => useContext(CharacterContext);
+export const useCharacterContext = () => React.useContext(CharacterContext);
