@@ -156,6 +156,3 @@ El frontend permite:
 
 Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
 
----
-
-¡Espero que este README te sirva para documentar tu proyecto de manera clara y atractiva en GitHub!
