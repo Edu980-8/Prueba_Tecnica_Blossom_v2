@@ -1,8 +1,7 @@
 const { GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLList, GraphQLInputObjectType } = require('graphql');
-const CharacterType = require('../types/CharacterType'); // Define el tipo Character
-const { getCharacters } = require('../resolvers/CharacterResolver'); // Resolver para obtener personajes
+const CharacterType = require('../types/CharacterType');
+const { getCharacters, getUniqueValues } = require('../resolvers/CharacterResolver');
 
-// Definir el tipo de entrada para los filtros
 const CharacterFilterInputType = new GraphQLInputObjectType({
   name: 'CharacterFilterInput',
   fields: {
@@ -14,17 +13,34 @@ const CharacterFilterInputType = new GraphQLInputObjectType({
   }
 });
 
-
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     characters: {
       type: new GraphQLList(CharacterType),
       args: {
-        filter: { type: CharacterFilterInputType }, // Usar el tipo de entrada para filtros
+        filter: { type: CharacterFilterInputType },
       },
       resolve(parent, args) {
-        return getCharacters(args.filter || {}); // Pasar los filtros al resolver
+        return getCharacters(args.filter || {});
+      }
+    },
+    uniqueStatuses: {
+      type: new GraphQLList(GraphQLString),
+      resolve() {
+        return getUniqueValues('status');
+      }
+    },
+    uniqueSpecies: {
+      type: new GraphQLList(GraphQLString),
+      resolve() {
+        return getUniqueValues('species');
+      }
+    },
+    uniqueGenders: {
+      type: new GraphQLList(GraphQLString),
+      resolve() {
+        return getUniqueValues('gender');
       }
     }
   }

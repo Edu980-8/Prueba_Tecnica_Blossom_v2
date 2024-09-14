@@ -32,7 +32,6 @@ const  PersonajesList = ({filteredCharacters, handleSoftDelete}) => {
                 to={`/details/${character.id}`}
                 className="flex items-center text-blue-500 hover:text-blue-600"
               >
-                <p>{character.id}</p>
                 <FaInfoCircle className="mr-2" /> Details
               </Link>
             </div>
