@@ -218,3 +218,9 @@ Porque hice dos versiones? En algunos momentos cuando tenia en cuenta el cache, 
 
 ¡Contribuciones son bienvenidas! Si deseas contribuir, por favor abre un issue o un pull request.
 
+
+## 📖 Licencia
+
+https://opensource.org/licenses/MIT
+
+
