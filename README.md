@@ -96,19 +96,19 @@ git clone https://github.com/usuario/repo.git
 Si el archivo clonado trae los node modules instalados:
 
 ### En sistemas basados en Unix (Linux/macOS):
-    ```linux
-    rm -rf node_modules
-    ```
+```bash
+rm -rf node_modules
+```
 
 ### En Windows (con Git Bash o terminal compatible):
-    ```bash
-    rm -rf node_modules
-    ```
+```bash
+rm -rf node_modules
+```
 
 ### En Windows (con el símbolo del sistema o PowerShell):
-    ```powershell
-    rmdir /s /q node_modules
-    ```
+```bash
+rmdir /s /q node_modules
+```
 
 ## 🎯 Funcionalidades
 
