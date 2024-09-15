@@ -18,6 +18,8 @@ Backend y frontend ejecutandose en desarrollo 😊
 Filtros funcionando (Hombre, vivo, humano y con Smith dentro de su nombre)
 ![image](https://github.com/user-attachments/assets/0ad195f0-3926-4119-874c-582746ff1b54)
 
+Modelo de base de datos
+![image](https://github.com/user-attachments/assets/4a417cb6-c3f3-475b-8868-146c243a7b2c)
 
 
 ## 📖 Descripción
