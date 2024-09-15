@@ -149,6 +149,10 @@ query{
 ```
 ![image](https://github.com/user-attachments/assets/a27b9362-fd13-4b15-b38f-a473a3ec6a9b)
 
+#### Respuesta del backend en Postman
+
+![image](https://github.com/user-attachments/assets/5ee8fca6-e2de-41a4-9bd7-c7cd93507d99)
+
 
 ### Frontend
 
