@@ -21,6 +21,10 @@ Filtros funcionando (Hombre, vivo, humano y con Smith dentro de su nombre)
 Modelo de base de datos
 ![image](https://github.com/user-attachments/assets/4a417cb6-c3f3-475b-8868-146c243a7b2c)
 
+Modelo de la aplicación
+![image](https://github.com/user-attachments/assets/e42a3920-9e24-4b94-ba54-85f0e65f59ec)
+
+
 
 ## 📖 Descripción
 
