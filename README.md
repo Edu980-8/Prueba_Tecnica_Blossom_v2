@@ -3,7 +3,22 @@
 
 # 🚀 Rick & Morty API - GraphQL, Express, Redis, and React Frontend
 
-![Rick and Morty]
+Frontend Funcionando: Homepage 👍
+![image](https://github.com/user-attachments/assets/fc50ae46-fc31-4b14-8e6d-01f844861877)
+
+Frontend Funcionando: Details Section 👍
+![image](https://github.com/user-attachments/assets/0c0b1c96-c9f0-463e-9763-90324b205f66)
+
+Backend leyendo las queries de GraphQL 👍
+![image](https://github.com/user-attachments/assets/978557ab-bf24-499c-893a-c44f5cfb572d)
+
+Backend y frontend ejecutandose en desarrollo 😊
+![image](https://github.com/user-attachments/assets/84582d22-4353-408f-a6d4-9d2a6b257dda)
+
+Filtros funcionando (Hombre, vivo, humano y con Smith dentro de su nombre)
+![image](https://github.com/user-attachments/assets/0ad195f0-3926-4119-874c-582746ff1b54)
+
+
 
 ## 📖 Descripción
 
