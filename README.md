@@ -24,15 +24,21 @@ Modelo de base de datos
 
 ## 📖 Descripción
 
-Este proyecto es una Integracion Fullstack que permite consultar y filtrar personajes de **Rick and Morty** utilizando **GraphQL** y **Express** en el backend, con soporte de **Redis** para mejorar el rendimiento mediante caching. Además, incluye un frontend construido en **React**, que consume los datos de la API para mostrar personajes, con funcionalidades como búsqueda y favoritos.
+Este proyecto es una Integracion Fullstack que permite consultar y filtrar personajes de **Rick and Morty** utilizando **GraphQL** y **Express** en el backend, con soporte de **Redis** para mejorar el rendimiento mediante caching. Además, incluye un frontend construido en **React**, que consume los datos de la API para mostrar personajes, con funcionalidades como búsqueda, favoritos y comentarios.
 
 ## 📋 Características
 
 - 🚀 **GraphQL API** con filtros para consultar personajes.
+![image](https://github.com/user-attachments/assets/e133d591-1a7c-4ae4-b182-4731d7ea7e54)
+
 - 🏎️ **Cache** utilizando Redis para mejorar la velocidad de respuesta.
-- 🌐 **Frontend** interactivo en React, con capacidad de búsqueda, ordenamiento, detalle y favoritos.
-- ⚡ **Backend** eficiente con **Express** para gestionar lógica del servidor.
+![image](https://github.com/user-attachments/assets/f979a908-7269-4cc2-8061-d587b221eb91)
+
+- 🌐 **Frontend** interactivo en React, con capacidad de búsqueda, ordenamiento, detalle y favoritos (imagenes del comienzo).
+- ⚡ **Backend** eficiente con **Express** para gestionar lógica del servidor(Se mostrará en la prueba Técnica).
 - 🤖 **React Router Dom** para manejar la paginación de la pagina web desde el frontend.
+![image](https://github.com/user-attachments/assets/4dffe9f3-11d5-4300-ac64-9d4ba07fd415)
+
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -52,7 +58,7 @@ Este proyecto es una Integracion Fullstack que permite consultar y filtrar perso
 ### 1. Clonar el Repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/rick-and-morty-api.git
+git clone https://github.com/usuario/repo.git
 
 ```
 
@@ -66,16 +72,12 @@ git clone https://github.com/tu-usuario/rick-and-morty-api.git
 
 2. **Configurar Redis**: Asegúrate de que Redis esté corriendo en tu máquina o en la nube. Si no tienes Redis instalado, puedes hacerlo siguiendo las [instrucciones oficiales](https://redis.io/download).
 
-3. **Configurar Variables de Entorno**: Crea un archivo `.env` en la carpeta `backend` con las siguientes variables:
-
-    ```env
-    PORT=4000
-    REDIS_URL=redis://localhost:6379
-    ```
+3. **Configurar Variables de Entorno**: En el repositorio actual ./backend existen unas variables implementadas en el archivo .env, modificalas dependiendo de tu conexion a MySql 
 
 4. **Iniciar el servidor**:
+   ### No olvides verificar que te encuentras dentro de la carpeta de backend.
     ```bash
-    npm start
+    npm run dev
     ```
 
 ### 3. Configuración del Frontend
@@ -88,7 +90,24 @@ git clone https://github.com/tu-usuario/rick-and-morty-api.git
 
 2. **Iniciar el frontend**:
     ```bash
-    npm start
+    npm run dev
+    ```
+
+Si el archivo clonado trae los node modules instalados:
+
+### En sistemas basados en Unix (Linux/macOS):
+    ```linux
+    rm -rf node_modules
+    ```
+
+### En Windows (con Git Bash o terminal compatible):
+    ```bash
+    rm -rf node_modules
+    ```
+
+### En Windows (con el símbolo del sistema o PowerShell):
+    ```powershell
+    rmdir /s /q node_modules
     ```
 
 ## 🎯 Funcionalidades
