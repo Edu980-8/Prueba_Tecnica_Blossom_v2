@@ -22,7 +22,8 @@ Modelo de base de datos
 ![image](https://github.com/user-attachments/assets/4a417cb6-c3f3-475b-8868-146c243a7b2c)
 
 Modelo de la aplicación
-![image](https://github.com/user-attachments/assets/e42a3920-9e24-4b94-ba54-85f0e65f59ec)
+![image](https://github.com/user-attachments/assets/e563d7e6-0f27-4c13-981e-23abbcbbfc7e)
+
 
 
 
