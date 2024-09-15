@@ -116,11 +116,11 @@ rmdir /s /q node_modules
 
 Puedes realizar consultas avanzadas a través de GraphQL para obtener personajes filtrando por nombre, estado, especie, género, y origen.
 
-#### Ejemplo de Query:
+### Ejemplo de Root query (Retorna los 15 elementos que se encuentran en la base de datos)
 
 ```graphql
-{
-  characters(filter: { name: "Rick", status: "Alive" }) {
+query{
+  characters{
     id
     name
     status
@@ -129,6 +129,26 @@ Puedes realizar consultas avanzadas a través de GraphQL para obtener personajes
   }
 }
 ```
+### La lista sigue pero no se ve 🕵️
+![image](https://github.com/user-attachments/assets/b057b842-b301-4061-9a6c-dcc58d0bfed8)
+
+
+
+#### Ejemplo de Query con filtro (Retorna los 6 elementos que se encuentran vivos🕊️ en la base de datos):
+
+```graphql
+query{
+  characters(filter: {  status: "Alive" }) {
+    id
+    name
+    status
+    species
+    origin
+  }
+}
+```
+![image](https://github.com/user-attachments/assets/a27b9362-fd13-4b15-b38f-a473a3ec6a9b)
+
 
 ### Frontend
 
@@ -139,17 +159,24 @@ El frontend permite:
 - Agregar personajes a favoritos.
 - Ver detalles de cada personaje.
 - Ordenamiento segun el abecedario.
+#### Esto se puede detallar en las imagenes mostradas al comienzo del repositorio (o si no en la entrevista técnica 🫒 )
 
 ## 🧰 Scripts
 
+Porque hice dos versiones? En algunos momentos cuando tenia en cuenta el cache, no se renderizaba correctamente los elementos del frontend, entonces para el modo desarrollo simplemente decidi omitirlo.
 - **Iniciar el backend**:
-    ```bash
-    npm run start
-    ```
+(Esto ejecuta el backend sin tener en cuenta el caché)
+  ```bash
+  npm run dev
+  ```
+  (Esto ejecuta el backend teniendo en cuenta el caché)
+  ```bash
+  npm start
+  ```
 
 - **Iniciar el frontend**:
     ```bash
-    npm run start
+    npm run dev
     ```
 
 - **Compilar el frontend para producción**:
@@ -163,17 +190,16 @@ El frontend permite:
 
 │
 ├── backend/           # Código del backend (Node.js, Express, GraphQL)
-│   ├── graphql/       # Esquema GraphQL dinámico.
-│   ├── models/        # Modelo de character y conexion con sql
-│   └── resolvers/     # Resolver con cache
-│   └── scripts/       # Inicializacion de base de datos
-│   └── types/         # Tipo de graphql Personaje
-│   └── index.js       # Servidor Express con GraphQL.
+│   ├── graphql/       # Aqui defino los tipos, los esquemas, las cadenas de texto, agrupo los filtros en un solo objeto, defino el formato de los datos de salida (una lista), etc...(Lo demas lo explico en la prueba)
+│   ├── models/        # Modelo de character y conexion con sql. Creo el modelo de base de datos llamado character porque solo tengo en cuenta los caracteres, no me da el tiempo para poner las relaciones 😔 
+│   └── resolvers/     # Obtengo los datos bien sea del caché o de la base de datos (tener en cuenta que en dev solo ignoro el cache 🐬), pero en el modo que no lo ignoro los retorna solo si los encuentra.
+│   └── scripts/       # Inicializacion de base de datos. Es un script que me trae los 15 primeros datos de la Api de rick y morty. (Esto solo es util si la database esta vacia 📝)
+│   └── types/         # Tipo de graphql Personaje. Me define la estructura de un solo Personaje/Character
+│   └── index.js       # Servidor Express con GraphQL. Creo la instancia de express, el middleware, configuro los cors, permito los metodos get y post, y los encabezados contenttype
 │
 ├── frontend/          # Código del frontend (React, TailwindCSS)
 │   ├── src/           # Componentes y lógica de React
-│   └── components     # Aqui esta el contexto, las tarjetas, los filtros, la barra de busqueda
-│   └── public/        # Archivos públicos del frontend
+│   └── components     # Aqui esta el contexto, las tarjetas, los filtros, la barra de busqueda, el renderizado de la pagina de detalles entre muchas cosas mas que explicare en la prueba.
 │
 └── README.md          # Este archivo
 ```
@@ -187,8 +213,4 @@ El frontend permite:
 ## 🤝 Contribuciones
 
 ¡Contribuciones son bienvenidas! Si deseas contribuir, por favor abre un issue o un pull request.
-
-## 🛡️ Licencia
-
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
 
