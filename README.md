@@ -36,6 +36,12 @@ Implementacion del diseño Mobile (Homepage)
 Implementacion del diseño Mobile (Details Section) 
 ![image](https://github.com/user-attachments/assets/51983d31-c296-4353-94d6-40fc4d79d72a)
 
+Diseño de filtros nuevos
+Desktop: ![image](https://github.com/user-attachments/assets/c9851b2c-5828-4651-9fbe-66544ca4dfd1)
+
+Mobile: ![image](https://github.com/user-attachments/assets/bcb16a48-6093-4cac-ba19-26ced9d8fe1a)
+
+
 
 
 
