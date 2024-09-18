@@ -27,7 +27,6 @@ const buildQuery = (filters) => {
   return query;
 };
 
-
 export const CharacterProvider = ({ children }) => {
   const [characters, setCharacters] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,10 +36,10 @@ export const CharacterProvider = ({ children }) => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [loading, setLoading] = useState(false); // Estado de carga
   const [error, setError] = useState(null); // Estado de error
-  const [comments, setComments] = useState({}); // { characterId: [comment1, comment2,
+  const [comments, setComments] = useState({}); // { characterId: [comment1, comment2, ...], ... }
   const [filterFlag, setFilterFlag] = useState(false);
   const [character_returned, setCharacter_returned] = useState({});
-
+  const [favorites, setFavorites] = useState([]);
 
   const addComment = (id, comment) => {
     setComments((prev) => ({
@@ -57,16 +56,32 @@ export const CharacterProvider = ({ children }) => {
           : character
       )
     );
+    // Actualiza la lista de favoritos después de alternar el estado de favorito
+    if (favorites.some((character) => character.id === id)) {
+      removeFavorite(id);
+    } else {
+      addFavorite(id);
+    }
   };
 
-  // Función para actualizar el personaje devuelto
-  const updateCharacterReturned = (characterId) => {
-    const updatedCharacter = characters.find(character => character.id === characterId);
-    setCharacter_returned(updatedCharacter);
+  const addFavorite = (id) => {
+    setFavorites((prevFavorites) => [
+      ...prevFavorites,
+      characters.find((character) => character.id === id),
+    ]);
+    handleSoftDelete(id); // Elimina el personaje de la lista de caracteres
   };
-  
 
-
+  const removeFavorite = (id) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.filter((character) => character.id !== id)
+    );
+    setCharacters((prevCharacters) =>
+      prevCharacters.map((character) =>
+        character.id === id ? { ...character, isDeleted: false } : character
+      )
+    );
+  };
 
   const handleSoftDelete = (id) => {
     setCharacters((prevCharacters) =>
@@ -74,6 +89,11 @@ export const CharacterProvider = ({ children }) => {
         character.id === id ? { ...character, isDeleted: true } : character
       )
     );
+  };
+
+  const updateCharacterReturned = (characterId) => {
+    const updatedCharacter = characters.find(character => character.id === characterId);
+    setCharacter_returned(updatedCharacter);
   };
 
   const fetchCharacters = useCallback(async (filters) => {
@@ -142,7 +162,10 @@ export const CharacterProvider = ({ children }) => {
         setFilterFlag,
         character_returned,
         setCharacter_returned,
-        updateCharacterReturned
+        updateCharacterReturned,
+        favorites,
+        addFavorite,
+        removeFavorite,
       }}
     >
       {children}

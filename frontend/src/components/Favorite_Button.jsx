@@ -23,7 +23,7 @@ const Favorite_Button = ({ characterId, className }) => {
 
   return (
     <div
-      className={`w-[32px] text-gray-600 h-[32px] ml-auto flex items-center justify-center rounded cursor-pointer group ${className}`}
+      className={`z-1000  w-[32px] text-gray-600 h-[32px] ml-auto flex items-center justify-center rounded cursor-pointer group ${className}`}
       onClick={handleClick}
     >
       {isFavorite ? (

@@ -48,7 +48,7 @@ const Filter_Buttons = ({ filterType, options }) => {
   };
 
   return (
-    <div className="mb-6">
+    <div className="m-6">
       <h3 className="text-gray-400 text-[0.875rem] font-weight-[500] mb-[0.375rem]">{getTitle()}</h3>
       <div className="grid grid-cols-4 gap-2">
         {options.map((option, index) => (

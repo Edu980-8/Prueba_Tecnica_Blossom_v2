@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CharacterList from "./components/CharacterList";
-import CharacterDetails from "./components/CharacterComments";
+import CharacterDetail from "./components/CharacterDetail";
 import { CharacterProvider } from "./components/CharacterContext";
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<CharacterList />} />
-          <Route path="/details/:id" element={<CharacterDetails />} />
+          <Route path="/character/:id" element={<CharacterDetail />} />
         </Routes>
       </Router>
     </CharacterProvider>
