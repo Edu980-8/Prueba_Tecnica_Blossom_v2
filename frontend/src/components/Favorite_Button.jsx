@@ -7,13 +7,13 @@ const Favorite_Button = ({ characterId, favorite }) => {
   
   return (
     <div
-      className="w-[32px] text-gray-600 h-[32px] ml-auto hover:bg-white hover:text-secondary-600 flex items-center justify-center rounded-[50%] cursor-pointer group"
+      className="w-[32px] text-gray-600 h-[32px] ml-auto flex items-center justify-center rounded cursor-pointer group "
       onClick={() => toggleFavorite(characterId)}
     >
       {favorite ? (
-        <FaHeart className="text-secondary-600" />
+        <FaHeart className="bg-white w-[24px] h-[24px] rounded-[50%] p-[0.3rem] text-secondary-600" />
       ) : (
-        <FaRegHeart className="text-red-600" />
+        <FaRegHeart className="bg-white w-[24px] h-[24px] rounded-[50%] p-[0.3rem] text-red-600" />
       )}
     </div>
   );
