@@ -1,4 +1,4 @@
-
+[Creacion_database.txt](https://github.com/user-attachments/files/17047839/Creacion_database.txt)
 ---
 
 # 🚀 Rick & Morty API - GraphQL, Express, Redis, and React Frontend
@@ -41,9 +41,53 @@ Desktop: ![image](https://github.com/user-attachments/assets/c9851b2c-5828-4651-
 
 Mobile: ![image](https://github.com/user-attachments/assets/bcb16a48-6093-4cac-ba19-26ced9d8fe1a)
 
+En caso tal de ser necesario este archivo fue el utilizado para la creacion de la base de datos:
+
+[Uploading C-- DROP DATABASE rick_morty_db;
+-- Crear la base de datos
+CREATE DATABASE rick_morty_db;
+
+-- Usar la base de datos
+USE rick_morty_db;
+
+-- Crear la tabla de personajes
+CREATE TABLE characters (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    status ENUM('Alive', 'Dead', 'unknown') NOT NULL,
+    species VARCHAR(255) NOT NULL,
+    gender ENUM('Female', 'Male', 'Genderless', 'unknown') NOT NULL,
+    origin VARCHAR(255),
+    image VARCHAR(1000),
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Crear la tabla de episodios
+CREATE TABLE episodes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    url VARCHAR(255) NOT NULL
+);
+
+-- Crear la tabla de relaciones entre personajes y episodios
+CREATE TABLE character_episodes (
+    character_id INT,
+    episode_id INT,
+    PRIMARY KEY (character_id, episode_id),
+    FOREIGN KEY (character_id) REFERENCES characters(id),
+    FOREIGN KEY (episode_id) REFERENCES episodes(id)
+);
+
+
+DESCRIBE Characters;
+
+SELECT * FROM characters;
+
+SHOW VARIABLES LIKE 'datadir';
 
 
 
+reacion_database.txt…]()
 
 
 
