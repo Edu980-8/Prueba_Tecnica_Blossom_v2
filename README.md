@@ -24,6 +24,11 @@ Modelo de base de datos
 Modelo de la aplicación
 ![image](https://github.com/user-attachments/assets/e563d7e6-0f27-4c13-981e-23abbcbbfc7e)
 
+Implementacion del diseño basado en figma (Sin responsive)
+
+![image](https://github.com/user-attachments/assets/0d79c2de-92a1-4cde-b593-12e0af74d45b)
+
+
 
 
 
