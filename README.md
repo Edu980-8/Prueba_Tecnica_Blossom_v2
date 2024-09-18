@@ -3,7 +3,11 @@
 
 # 🚀 Rick & Morty API - GraphQL, Express, Redis, and React Frontend
 
-Frontend Funcionando: Homepage 👍
+Frontend Funcionando: Home page Diseños Nuevos
+![image](https://github.com/user-attachments/assets/bf46bef0-7f17-4c50-ae8c-62afae3fb422)
+
+
+Frontend Funcionando: Homepage (Diseños antiguos) 👍
 ![image](https://github.com/user-attachments/assets/fc50ae46-fc31-4b14-8e6d-01f844861877)
 
 Frontend Funcionando: Details Section 👍
@@ -24,11 +28,8 @@ Modelo de base de datos
 Modelo de la aplicación
 ![image](https://github.com/user-attachments/assets/e563d7e6-0f27-4c13-981e-23abbcbbfc7e)
 
-Implementacion del diseño basado en figma (Sin responsive)
 
-![image](https://github.com/user-attachments/assets/0d79c2de-92a1-4cde-b593-12e0af74d45b)
-
-Implementacion del diseño Mobile
+Implementacion del diseño Mobile 
 
 ![image](https://github.com/user-attachments/assets/2b8ce4a2-03bb-408b-84b3-b74ad50ab471)
 
