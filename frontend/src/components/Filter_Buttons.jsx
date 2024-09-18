@@ -1,7 +1,7 @@
 import { useCharacterContext } from "./CharacterContext";
 
 const Filter_Buttons = ({ filterType, options }) => {
-  const { setStatusFilter, setSpeciesFilter, setGenderFilter } = useCharacterContext();
+  const { statusFilter, speciesFilter, genderFilter, setStatusFilter, setSpeciesFilter, setGenderFilter } = useCharacterContext();
 
   const handleFilterChange = (value) => {
     switch (filterType) {
@@ -33,6 +33,20 @@ const Filter_Buttons = ({ filterType, options }) => {
     }
   };
 
+  // Obtener el filtro actual según el tipo
+  const getSelectedFilter = () => {
+    switch (filterType) {
+      case "status":
+        return statusFilter;
+      case "species":
+        return speciesFilter;
+      case "gender":
+        return genderFilter;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="mb-6">
       <h3 className="text-gray-400 text-[0.875rem] font-weight-[500] mb-[0.375rem]">{getTitle()}</h3>
@@ -41,9 +55,11 @@ const Filter_Buttons = ({ filterType, options }) => {
           <button
             key={index}
             onClick={() => handleFilterChange(option)}
-            className="w-full  py-2 border border-gray-300 rounded-lg  hover:bg-primary-100 hover:text-primary-600 focus:outline-none focus:ring-2"
+            className={`w-full py-2 border border-gray-300 rounded-lg 
+              ${getSelectedFilter() === option ? 'bg-primary-100 text-primary-600' : 'hover:bg-primary-100 hover:text-primary-600'} 
+              focus:outline-none`}
           >
-            {option || "All"}
+            {option === "Unknown" ? "Other" : option || "All"}
           </button>
         ))}
       </div>

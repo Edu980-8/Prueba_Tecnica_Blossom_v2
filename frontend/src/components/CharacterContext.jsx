@@ -37,7 +37,6 @@ export const CharacterProvider = ({ children }) => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [loading, setLoading] = useState(false); // Estado de carga
   const [error, setError] = useState(null); // Estado de error
-  const [favorite, setFavorite] = useState(false); // Estado de favorito
   const [comments, setComments] = useState({}); // { characterId: [comment1, comment2,
   const [filterFlag, setFilterFlag] = useState(false);
   const [character_returned, setCharacter_returned] = useState({});
@@ -54,11 +53,18 @@ export const CharacterProvider = ({ children }) => {
     setCharacters((prevCharacters) =>
       prevCharacters.map((character) =>
         character.id === id
-          ? { ...character, favorite: !character.favorite }
+          ? { ...character, favorite: !character.favorite } // Alterna el estado de favorito
           : character
       )
     );
   };
+
+  // Función para actualizar el personaje devuelto
+  const updateCharacterReturned = (characterId) => {
+    const updatedCharacter = characters.find(character => character.id === characterId);
+    setCharacter_returned(updatedCharacter);
+  };
+  
 
 
 
@@ -130,13 +136,13 @@ export const CharacterProvider = ({ children }) => {
         error, // Proporcionar estado de error
         handleSoftDelete,
         toggleFavorite,
-        favorite,
         comments,
         addComment,
         filterFlag,
         setFilterFlag,
         character_returned,
-        setCharacter_returned
+        setCharacter_returned,
+        updateCharacterReturned
       }}
     >
       {children}
