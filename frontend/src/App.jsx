@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CharacterList from "./components/CharacterList";
-import CharacterDetails from "./components/CharacterDetails";
+import CharacterDetails from "./components/CharacterComments";
 import { CharacterProvider } from "./components/CharacterContext";
 
 const App = () => {

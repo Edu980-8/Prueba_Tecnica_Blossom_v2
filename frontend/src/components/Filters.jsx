@@ -1,62 +1,49 @@
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { useCharacterContext } from "./CharacterContext";
+import Filter_Buttons from "./Filter_Buttons";
 
-const Filters = () => {
-  const { setStatusFilter, setSpeciesFilter, setGenderFilter,setSortOrder } = useCharacterContext();
+const Filters = ({ filterFlag }) => {
+  const { setSortOrder } = useCharacterContext();
 
   return (
-    <div className="flex flex-col md:flex-row justify-between mb-6 space-y-4 md:space-y-0 md:space-x-4">
-      {/* Filtro por status */}
-      <select
-        onChange={(e) => setStatusFilter(e.target.value)}
-        className="w-full max-w-xs px-4 py-2 border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-      >
-        <option value="">Filter by Status</option>
-        <option value="alive">Alive</option>
-        <option value="dead">Dead</option>
-        <option value="unknown">Unknown</option>
-      </select>
+    filterFlag && (
+      <div className="flex flex-col gap-4 p-[1.5rem] border border-gray-200 rounded-[0.375rem] shadow-md">
+        {/* Filtro por status */}
+        <Filter_Buttons
+          filterType="status"
+          options={["", "Alive", "Dead", "Unknown"]}
+        />
 
-      {/* Filtro por especie */}
-      <select
-        onChange={(e) => setSpeciesFilter(e.target.value)}
-        className="w-full max-w-xs px-4 py-2 border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-      >
-        <option value="">Filter by Species</option>
-        <option value="human">Human</option>
-        <option value="alien">Alien</option>
-      </select>
+        {/* Filtro por especie */}
+        <Filter_Buttons
+          filterType="species"
+          options={["", "Human", "Alien", "Unknown"]}
+        />
 
-      {/* Filtro por género */}
-      <select
-        onChange={(e) => setGenderFilter(e.target.value)}
-        className="w-full max-w-xs px-4 py-2 border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-      >
-        <option value="">Filter by Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="genderless">Genderless</option>
-        <option value="unknown">Unknown</option>
-      </select>
+        {/* Filtro por género */}
+        <Filter_Buttons
+          filterType="gender"
+          options={["", "Male", "Female", "Unknown"]}
+        />
 
-      {/* Filtro por ordenamiento */}
-      <div className="flex space-x-4">
-        <button
-          onClick={() => setSortOrder("asc")}
-          className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-        >
-          Sort Ascending
-        </button>
-        <button
-          onClick={() => setSortOrder("desc")}
-          className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-        >
-          Sort Descending
-        </button>
+        {/* Filtro por ordenamiento */}
+        <div className="flex gap-[0.75rem] justify-center">
+          <p className="mt-4 text-gray-600 font-bold text-[1rem]">Sort Order:</p>
+          <button
+            onClick={() => setSortOrder("asc")}
+            className="mt-2 flex justify-center items-center w-[6.375rem] h-[2.75rem] px-[1.063rem] py-[0.625rem] text-black rounded-lg hover:bg-primary-100 hover:text-primary-600 focus:outline-none focus:ring-2"
+          >
+            <FaArrowUp />
+          </button>
+          <button
+            onClick={() => setSortOrder("desc")}
+            className="mt-2 flex justify-center items-center w-[6.375rem] h-[2.75rem] px-[1.063rem] py-[0.625rem] text-black rounded-lg hover:bg-primary-100 hover:text-primary-600 focus:outline-none focus:ring-2"
+          >
+            <FaArrowDown />
+          </button>
+        </div>
       </div>
-
-      
-
-    </div>
+    )
   );
 };
 

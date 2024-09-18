@@ -37,26 +37,27 @@ export const CharacterProvider = ({ children }) => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [loading, setLoading] = useState(false); // Estado de carga
   const [error, setError] = useState(null); // Estado de error
-  const [favorites, setFavorites] = useState(new Set()); // Conjunto de IDs de personajes favoritos
+  const [favorite, setFavorite] = useState(false); // Estado de favorito
   const [comments, setComments] = useState({}); // { characterId: [comment1, comment2,
+  const [filterFlag, setFilterFlag] = useState(false);
+  const [character_returned, setCharacter_returned] = useState({});
 
-  const toggleFavorite = (id) => {
-    setFavorites((prevFavorites) => {
-      const newFavorites = new Set(prevFavorites);
-      if (newFavorites.has(id)) {
-        newFavorites.delete(id);
-      } else {
-        newFavorites.add(id);
-      }
-      return newFavorites;
-    });
-  };
 
   const addComment = (id, comment) => {
     setComments((prev) => ({
       ...prev,
       [id]: [...(prev[id] || []), comment],
     }));
+  };
+
+  const toggleFavorite = (id) => {
+    setCharacters((prevCharacters) =>
+      prevCharacters.map((character) =>
+        character.id === id
+          ? { ...character, favorite: !character.favorite }
+          : character
+      )
+    );
   };
 
 
@@ -129,9 +130,13 @@ export const CharacterProvider = ({ children }) => {
         error, // Proporcionar estado de error
         handleSoftDelete,
         toggleFavorite,
-        favorites,
+        favorite,
         comments,
-        addComment
+        addComment,
+        filterFlag,
+        setFilterFlag,
+        character_returned,
+        setCharacter_returned
       }}
     >
       {children}

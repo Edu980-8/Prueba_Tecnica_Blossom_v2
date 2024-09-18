@@ -3,4 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Greycliff CF';
+    src: url('/assets/fonts/GreycliffCF-ThinOblique.ttf') format('truetype');
+    font-weight: normal; /* Ajusta según el peso de la fuente */
+    font-style: oblique; /* Ajusta según el estilo de la fuente */
+  }
+  
+
 
