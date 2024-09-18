@@ -28,6 +28,11 @@ Implementacion del diseño basado en figma (Sin responsive)
 
 ![image](https://github.com/user-attachments/assets/0d79c2de-92a1-4cde-b593-12e0af74d45b)
 
+Implementacion del diseño Mobile
+
+![image](https://github.com/user-attachments/assets/2b8ce4a2-03bb-408b-84b3-b74ad50ab471)
+
+
 
 
 
