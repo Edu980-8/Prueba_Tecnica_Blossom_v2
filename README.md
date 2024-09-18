@@ -43,7 +43,7 @@ Mobile: ![image](https://github.com/user-attachments/assets/bcb16a48-6093-4cac-b
 
 En caso tal de ser necesario este archivo fue el utilizado para la creacion de la base de datos:
 
-[Uploading C-- DROP DATABASE rick_morty_db;
+ -- DROP DATABASE rick_morty_db;
 -- Crear la base de datos
 CREATE DATABASE rick_morty_db;
 
@@ -85,9 +85,6 @@ SELECT * FROM characters;
 
 SHOW VARIABLES LIKE 'datadir';
 
-
-
-reacion_database.txt…]()
 
 
 
