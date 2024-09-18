@@ -29,9 +29,12 @@ Modelo de la aplicación
 ![image](https://github.com/user-attachments/assets/e563d7e6-0f27-4c13-981e-23abbcbbfc7e)
 
 
-Implementacion del diseño Mobile 
+Implementacion del diseño Mobile (Homepage)
 
 ![image](https://github.com/user-attachments/assets/2b8ce4a2-03bb-408b-84b3-b74ad50ab471)
+
+Implementacion del diseño Mobile (Details Section) 
+![image](https://github.com/user-attachments/assets/51983d31-c296-4353-94d6-40fc4d79d72a)
 
 
 
