@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 //Un middleware que se ejecuta con cada solicitud. Solo imprime en consola el método HTTP (GET, POST, etc.) y la URL de la solicitud. Luego pasa al siguiente middleware con next().
 
 app.use(cors({
-  origin: 'http://localhost:5173', // La URL de tu frontend
+  origin: 'http://localhost:5174', // La URL de tu frontend
   methods: ['GET', 'POST'], // Métodos permitidos
   allowedHeaders: ['Content-Type'], // Encabezados permitidos
 }));

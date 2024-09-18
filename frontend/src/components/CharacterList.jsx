@@ -1,6 +1,5 @@
 import { useCharacterContext } from "./CharacterContext";
-import { FaTrash, FaInfoCircle, FaSearch, FaSlidersH } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaTrash, FaSearch, FaSlidersH } from "react-icons/fa";
 import Search from "./Search"; // Mantén la búsqueda si la estás utilizando
 import Filters from "./Filters";
 import Favorite_Button from "./Favorite_Button";
