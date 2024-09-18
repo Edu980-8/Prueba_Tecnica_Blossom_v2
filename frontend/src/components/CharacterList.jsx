@@ -11,17 +11,20 @@ const PersonajesList = ({
   filteredCharacters,
   handleSoftDelete,
   setCharacter_returned,
+  handleCharacterClick
 }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleCharacterClick = (character) => {
-    const isMobile = window.innerWidth <= 768; // Detecta si es móvil
-    if (isMobile) {
-      navigate(`/character/${character.id}`); // Navega a la vista de detalles en móvil
-    } else {
-      setCharacter_returned(character); // Muestra detalles en la misma página en escritorio
-    }
-  };
+  // const handleCharacterClick = (character) => {
+  //   const isMobile = window.innerWidth <= 768; // Detecta si es móvil
+  //   if (isMobile) {
+  //     const path = `/character/${character.id}`;
+  //     navigate(path); // Navega a la vista de detalles en móvil
+  //     console.log(path);
+  //   } else {
+  //     setCharacter_returned(character); // Muestra detalles en la misma página en escritorio
+  //   }
+  // };
 
   return (
     <ul className="font-greycliff m-auto">
@@ -29,15 +32,15 @@ const PersonajesList = ({
         <li
           key={character.id}
           className="p-4 justify-self-center focus:outline-none hover:bg-primary-100 hover:rounded-lg border-t border-gray-300"
-          onClick={() => handleCharacterClick(character)}
         >
           <div className="flex items-center">
             <img
               src={character.image}
               alt={character.name}
               className="w-8 h-8 rounded-full"
+              onClick={() => handleCharacterClick(character)}
             />
-            <div className="text-left text-sm ml-4 w-full">
+            <div className="text-left text-sm ml-4 w-full" onClick={() => handleCharacterClick(character)}>
               <p className="font-bold">{character.name}</p>
               <p className="text-gray-600">Species: {character.species}</p>
             </div>
@@ -65,7 +68,8 @@ const PersonajesList = ({
   );
 };
 
-const FavoriteList = ({ favorites, setCharacterReturned }) => (
+const FavoriteList = ({ favorites, setCharacterReturned,handleCharacterClick }) => (
+  
   <section>
     <h2 className="font-greycliff mt-10 text-left text-xl font-bold mb-8">
       Favorites
@@ -75,15 +79,17 @@ const FavoriteList = ({ favorites, setCharacterReturned }) => (
         <li
           key={character.id}
           className="p-4 justify-self-center focus:outline-none hover:bg-primary-100 hover:rounded-lg border-t border-gray-300"
-          onClick={() => setCharacterReturned(character)}
+          
         >
           <div className="flex items-center">
             <img
               src={character.image}
               alt={character.name}
               className="w-8 h-8 rounded-full"
+              onClick={() => handleCharacterClick(character)}
+
             />
-            <div className="text-left text-sm ml-4 w-full">
+            <div className="text-left text-sm ml-4 w-full" onClick={() => handleCharacterClick(character)} >
               <p className="font-bold">{character.name}</p>
               <p className="text-gray-600">Species: {character.species}</p>
             </div>
@@ -114,6 +120,18 @@ const CharacterList = () => {
     setCharacter_returned,
     favorites,
   } = useCharacterContext();
+
+  const navigate = useNavigate();
+  const handleCharacterClick = (character) => {
+    const isMobile = window.innerWidth <= 768; // Detecta si es móvil
+    if (isMobile) {
+      const path = `/character/${character.id}`;
+      navigate(path); // Navega a la vista de detalles en móvil
+      console.log(path);
+    } else {
+      setCharacter_returned(character); // Muestra detalles en la misma página en escritorio
+    }
+  };
 
   const filteredCharacters = characters
     .filter((character) => {
@@ -182,6 +200,7 @@ const CharacterList = () => {
             <FavoriteList
               favorites={favorites}
               setCharacterReturned={setCharacter_returned}
+              handleCharacterClick={handleCharacterClick}
             />
 
             <section>
@@ -195,6 +214,7 @@ const CharacterList = () => {
                 filteredCharacters={filteredCharacters}
                 handleSoftDelete={handleSoftDelete}
                 setCharacter_returned={setCharacter_returned}
+                handleCharacterClick={handleCharacterClick}
               />
             </div>
           </div>

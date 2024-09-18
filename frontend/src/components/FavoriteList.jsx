@@ -1,10 +1,38 @@
-
 import { useCharacterContext } from './CharacterContext';
 import { FaTrash } from 'react-icons/fa';
 import Favorite_Button from './Favorite_Button';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+// Hook personalizado para detectar si la vista es móvil
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return isMobile;
+};
 
 const FavoriteList = ({ setCharacter_returned }) => {
   const { favorites, removeFavorite, handleSoftDelete } = useCharacterContext();
+  const navigate = useNavigate();
+  const isMobile = useIsMobile(); // Usa el hook para detectar si es móvil
+
+  const handleCharacterClick = (character) => {
+    if (isMobile) {
+      navigate(`/character/${character.id}`); // Navega a la vista de detalles en móvil
+    } else {
+      setCharacter_returned(character); // Muestra detalles en la misma página en escritorio
+    }
+  };
 
   return (
     <div className="px-6 mt-6">
@@ -17,7 +45,7 @@ const FavoriteList = ({ setCharacter_returned }) => {
             <li
               key={character.id}
               className="p-4 border-t border-gray-300 hover:bg-primary-100 rounded-lg cursor-pointer"
-              onClick={() => setCharacter_returned(character)}
+              onClick={() => handleCharacterClick(character)} // Clic en el contenedor entero
             >
               <div className="flex items-center">
                 <img
@@ -40,9 +68,9 @@ const FavoriteList = ({ setCharacter_returned }) => {
                 <button
                   className="flex items-center text-red-500 hover:text-red-600"
                   onClick={(e) => {
-                    e.stopPropagation(); // Para evitar que el clic en "Delete" también active el onClick del elemento padre
-                    handleSoftDelete(character.id);
-                    removeFavorite(character.id);
+                    e.stopPropagation(); // Evita la propagación del evento clic
+                    handleSoftDelete(character.id); // Soft delete
+                    removeFavorite(character.id); // Remueve de favoritos
                   }}
                 >
                   <FaTrash className="mr-2" /> Delete
